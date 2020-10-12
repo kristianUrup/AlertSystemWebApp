@@ -3,6 +3,4 @@ node_js:
   - node
   - 10
 
-install:
-  - yarn
 script: true
