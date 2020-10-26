@@ -6,14 +6,15 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "eslint": "^7.11.0",
     "guid-typescript": "^1.0.9",
     "react": "^16.13.1",
     "react-datetime": "latest",
     "react-dom": "^16.13.1",
     "react-router-dom": "latest",
     "react-scripts": "3.4.3",
-    "typescript": "^4.0.3"
+    "typescript": "^4.0.3",
+    "eslint": "^6.6.0"
+
   },
   "scripts": {
     "start": "react-scripts start",
