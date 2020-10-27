@@ -12,7 +12,6 @@ const Home: React.FC = () => {
     useEffect(() => {
         GetAlarms().then(list => {
             setAlarms(list);
-            console.log("Hello");
         });
     }, []);
 
