@@ -10,7 +10,10 @@ const Home: React.FC = () => {
 
 
     useEffect(() => {
-        setAlarms(GetAlarms());
+        GetAlarms().then(list => {
+            setAlarms(list);
+            console.log("Hello");
+        });
     }, []);
 
     const openPopUp = (data: Alarm) => {

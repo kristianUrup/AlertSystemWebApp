@@ -1,30 +1,16 @@
 import {Alarm} from '../models/Alarm';
-import {Guid} from "guid-typescript";
 
-export const GetAlarms = () : Alarm[] => {
-    return alarmList;
+export const GetAlarms = async (): Promise<Alarm[]> => {
+    return await GetAlarmsFromApiAsync();
 };
 
-export const GetFormattedDate = (dateToFormat: Date) : string => {
-    const something : string = `${dateToFormat.getDate()}/${dateToFormat.getMonth()}/${dateToFormat.getFullYear()} ${dateToFormat.getHours()}:${dateToFormat.getMinutes()}`;
-    return something;
+export const GetFormattedDate = (dateNumber: number) : string => {
 
+    let dateToFormat = new Date(dateNumber);
+    return `${dateToFormat.getDate()}/${dateToFormat.getMonth()}/${dateToFormat.getFullYear()} ${dateToFormat.getHours()}:${dateToFormat.getMinutes()}`;
 };
 
-const alarmList: Alarm[] = [
-    {
-        id : Guid.create(),
-        alarmId : Guid.create(),
-        date : new Date(400000000000)
-    },
-    {
-        id : Guid.create(),
-        alarmId : Guid.create(),
-        date : new Date(500000000000)
-    },
-    {
-        id : Guid.create(),
-        alarmId : Guid.create(),
-        date : new Date(480000000000)
-    }
-];
+const GetAlarmsFromApiAsync = async (): Promise<Alarm[]> => {
+    return await fetch('https://api.mocki.io/v1/38a5fde6').then(response => response.json());
+};
+
