@@ -1,7 +1,5 @@
-import { Guid } from "guid-typescript";
-
 export interface Alarm {
-    id: Guid,
-    alarmId : Guid,
-    date: number
+    alarmId : number,
+    code: number,
+    description: string,
 }
