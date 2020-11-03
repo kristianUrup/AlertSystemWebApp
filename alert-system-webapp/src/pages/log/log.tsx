@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import {GetAlarms, GetFormattedDate} from "../../data/AlarmService";
 import {AlarmLog} from "../../models/AlarmLog";
 import {AlarmLogs} from "../alarmLogProps/alarmLogProps";
+import './log.css';
+import { useHistory } from "react-router-dom";
 
 const Log: React.FC = () => {
     const [alarms, setAlarms] = useState<AlarmLog[]>([]);
@@ -19,32 +21,50 @@ const Log: React.FC = () => {
         setAlarm(data);
     };
 
+    let history = useHistory();
+
+    function handleClick() {
+        history.push('/')
+    }
 
     return (
         <div>
-    <h3>Alarm Log</h3>
-    <div>
+            <h1> Alarm Log</h1>
+            <button className={"Home__Button"} onClick={handleClick}>
+                Home
+            </button>
+          <div>
+                <div className={"home__body-list-title-row"}>
+                    <div className={"home__body-list-title-col"}>Machine ID</div>
+                    <div className={"home__body-list-title-col"}>Alarm ID</div>
+                    <div className={"home__body-list-title-col"}>Date</div>
+                </div>
+            </div>
+        <div className={"home__body-list"}>
     {alarms.map((data, index) => {
             return (
                 <div key={`main-${index}`}
+                  className={"home__body-list-row"}
             onClick={() => {
                 openPopUp(data);
             }}
         >
-            <div key={`machine-${index}`}>
-            <p><b>Machine: </b>{data.machine.machineId}</p>
-            </div>
-            <div key={`alarm-${index}`}>
-            <p><b>Alarm: </b>{data.alarm.alarmId}</p>
-            </div>
-            <div key={`date-${index}`}>
-            <p><b>Date: </b>{GetFormattedDate(data.date)}</p>
-            </div>
-            ---------
+                    <div className={"home__body-list-col"}>
+                        <div key={`machine-${index}`}>
+                            {data.machine.machineId} </div>
+                    </div>
+                    <div className={"home__body-list-col"}>
+                        <div key={`alarm-${index}`}>
+                        {data.alarm.alarmId} </div>
+                    </div>
+                    <div className={"home__body-list-col"}>
+                        <div key={`date-${index}`}>
+                        {GetFormattedDate(data.date)} </div>
+                    </div>
                 </div>
-        );
-        })}
-    </div>
+            )})}
+        </div>
+
     {open && alarm && (
         <AlarmLogs
             open={open}
@@ -52,8 +72,8 @@ const Log: React.FC = () => {
         alarm={alarm}
         />
     )}
-    </div>
 
+                </div>
 )};
 
 export default Log;

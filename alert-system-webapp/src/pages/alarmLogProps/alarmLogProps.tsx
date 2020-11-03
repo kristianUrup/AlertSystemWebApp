@@ -15,7 +15,7 @@ export const AlarmLogs: React.FC<AlarmLogProps> = ({
                                                }) => {
     return (
         <div>
-            <div>
+            <div className={"alarm__Log-border"}>
                 <b>CLICKED ITEM</b>
                 <p>MachineID: {alarm.machine.machineId}</p>
                 <p>AlarmID: {alarm.alarm.alarmId}</p>

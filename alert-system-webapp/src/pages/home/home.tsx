@@ -1,12 +1,20 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import './home.css';
+import { useHistory } from "react-router-dom";
+
 
 const Home: React.FC = () => {
+    let history = useHistory();
+
+    function handleClick() {
+        history.push('/log')
+    }
+
     return (
         <div>
             <h1>Welcome to the Admin Page</h1>
-            <button>
-                <Link to="/log">Logs</Link>
+            <button className={"Home__Button"} onClick={handleClick}>
+                Log
             </button>
         </div>
     )
