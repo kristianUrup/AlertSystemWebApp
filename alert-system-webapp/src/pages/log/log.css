@@ -1,0 +1,72 @@
+.home__body-title {
+    margin-top: 50px;
+    margin-left: 20px;
+}
+
+.home__body-route-button {
+    margin-left: 20px;
+}
+
+.home__body-user-title {
+    margin-left: 20px;
+}
+
+.home__body-list-title-row {
+    margin-left: 20px;
+    float: left;
+}
+
+.home__body-list-title-col {
+    float: left;
+    font-weight: bold;
+    width: 200px;
+}
+
+.home__body-list {
+    clear: both;
+    display: table;
+    margin-left: 20px;
+    border: 1px solid #d1d1d1;
+    border-bottom: 0px;
+    width: auto;
+}
+
+.home__body-list-row {
+    display: table-row;
+    height: 50px;
+    border: 1px solid;
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
+
+.home__body-list-row:hover {
+    background-color: #cfcaca;
+}
+
+.home__body-list-col {
+    display: table-column;
+    float: left;
+    width: 200px;
+    border-bottom: 1px solid #d1d1d1;
+}
+.Home__Button {
+    box-shadow: 0px 0px 0px 2px #9fb4f2;
+    background: #7892c2 linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+    border-radius:42px;
+    border:1px solid #4e6096;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    padding:9px 20px;
+    text-decoration:none;
+}
+
+.Home__Button:hover {
+    background: #476e9e linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+}
+.Home__Button:active {
+    position:relative;
+    top:1px;
+}
