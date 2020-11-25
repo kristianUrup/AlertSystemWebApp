@@ -28,49 +28,41 @@ const Log: React.FC = () => {
     }
 
     return (
-        <div>
-            <h1> Alarm Log</h1>
+        <div className="log__page">
+            <h1>Alarm Log</h1>
             <button className={"log__home-button"} onClick={handleClick}>
                 Home
             </button>
-            <div>
-                <div className={"log__body-list-title-row"}>
-                    <div className={"log__body-list-title-col"}>Machine ID</div>
-                    <div className={"log__body-list-title-col"}>Alarm Code</div>
-                    <div className={"log__body-list-title-col"}>Date</div>
-                </div>
-            </div>
-        <div className={"log__body-list"}>
-            {alarms.map((data, index) => {
-            return (
-                <div key={`main-${index}`}
-                    className={"log__body-list-row"}
-                    onClick={() => {
-                    openPopUp(data);
-                }}>
-                    <div className={"log__body-list-col"}>
-                        <div key={`machine-${index}`}>
-                            {data.machine.machineId} 
-                        </div>
-                    </div>
-                    <div className={"log__body-list-col"}>
-                        <div key={`alarm-${index}`}>
-                            {data.alarm.code} 
-                        </div>
-                    </div>
-                    <div className={"log__body-list-col"}>
-                        <div key={`date-${index}`}>
-                        {GetFormattedDate(data.date)} </div>
-                    </div>
-                </div>
-            )})}
+            <table className="log__table">
+                <thead>
+                    <tr>
+                        <th>Machine ID</th>
+                        <th>Alarm Code</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {alarms.map((data, index) => {
+                        return (
+                            <tr key={`data-${index}`} onClick={() => openPopUp(data)}>
+                                <td>
+                                    {data.machine.machineId}
+                                </td>
+                                <td>
+                                    {data.alarm.code}
+                                </td>
+                                <td>
+                                    {GetFormattedDate(data.date)}
+                                </td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
+            </table>
+            {open && alarm && (
+                <AlarmLogs open={open} handleClose={() => setOpen(false)} alarm={alarm}/>
+            )}
         </div>
-
-    {open && alarm && (
-        <AlarmLogs open={open} handleClose={() => setOpen(false)} alarm={alarm}/>
-    )}
-
-    </div>
 )};
 
 export default Log;
