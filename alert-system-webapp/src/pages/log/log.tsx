@@ -30,34 +30,35 @@ const Log: React.FC = () => {
     return (
         <div>
             <h1> Alarm Log</h1>
-            <button className={"Home__Button"} onClick={handleClick}>
+            <button className={"log__home-button"} onClick={handleClick}>
                 Home
             </button>
-          <div>
-                <div className={"home__body-list-title-row"}>
-                    <div className={"home__body-list-title-col"}>Machine ID</div>
-                    <div className={"home__body-list-title-col"}>Alarm ID</div>
-                    <div className={"home__body-list-title-col"}>Date</div>
+            <div>
+                <div className={"log__body-list-title-row"}>
+                    <div className={"log__body-list-title-col"}>Machine ID</div>
+                    <div className={"log__body-list-title-col"}>Alarm Code</div>
+                    <div className={"log__body-list-title-col"}>Date</div>
                 </div>
             </div>
-        <div className={"home__body-list"}>
-    {alarms.map((data, index) => {
+        <div className={"log__body-list"}>
+            {alarms.map((data, index) => {
             return (
                 <div key={`main-${index}`}
-                  className={"home__body-list-row"}
-            onClick={() => {
-                openPopUp(data);
-            }}
-        >
-                    <div className={"home__body-list-col"}>
+                    className={"log__body-list-row"}
+                    onClick={() => {
+                    openPopUp(data);
+                }}>
+                    <div className={"log__body-list-col"}>
                         <div key={`machine-${index}`}>
-                            {data.machine.machineId} </div>
+                            {data.machine.machineId} 
+                        </div>
                     </div>
-                    <div className={"home__body-list-col"}>
+                    <div className={"log__body-list-col"}>
                         <div key={`alarm-${index}`}>
-                        {data.alarm.alarmId} </div>
+                            {data.alarm.code} 
+                        </div>
                     </div>
-                    <div className={"home__body-list-col"}>
+                    <div className={"log__body-list-col"}>
                         <div key={`date-${index}`}>
                         {GetFormattedDate(data.date)} </div>
                     </div>
@@ -66,14 +67,10 @@ const Log: React.FC = () => {
         </div>
 
     {open && alarm && (
-        <AlarmLogs
-            open={open}
-        handleClose={() => setOpen(false)}
-        alarm={alarm}
-        />
+        <AlarmLogs open={open} handleClose={() => setOpen(false)} alarm={alarm}/>
     )}
 
-                </div>
+    </div>
 )};
 
 export default Log;
