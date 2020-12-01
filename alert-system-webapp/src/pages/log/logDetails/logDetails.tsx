@@ -3,7 +3,7 @@ import { GetFormattedDate } from "../../../data/AlarmService";
 import { AlarmLog } from "../../../models/AlarmLog";
 import "./logDetails.css"
 
-export interface LogDetailsProp {
+interface LogDetailsProp {
     alarmLog: AlarmLog;
 }
 const LogDetails: React.FC<LogDetailsProp> = ({ alarmLog }) => {

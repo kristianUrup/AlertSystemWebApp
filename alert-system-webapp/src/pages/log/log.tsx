@@ -3,6 +3,7 @@ import {GetAlarms, GetFormattedDate} from "../../data/AlarmService";
 import {AlarmLog} from "../../models/AlarmLog";
 import './log.css';
 import LogDetails from './logDetails/logDetails';
+import LogTable from './logTable/logTable';
 
 const Log: React.FC = () => {
     const [alarms, setAlarms] = useState<AlarmLog[]>([]);
@@ -20,36 +21,12 @@ const Log: React.FC = () => {
 
             </div>
             <div className="log__table-container">
-                <table className="log__table">
-                    <thead>
-                        <tr>
-                            <th>Machine ID</th>
-                            <th>Alarm Code</th>
-                            <th>Date</th>
-                            <th>Last status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {alarms.map((data, index) => {
-                            return (
-                                <tr key={`data-${index}`} onClick={() => setAlarm(data)}>
-                                    <td>
-                                        {data.machine.machineId}
-                                    </td>
-                                    <td>
-                                        {data.alarm.code}
-                                    </td>
-                                    <td>
-                                        {GetFormattedDate(data.date)}
-                                    </td>
-                                    <td>
-                                        Fixed
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                </tbody>
-            </table>
+                {alarms.length > 0 && <LogTable alarmLogs={alarms} setAlarm={al => setAlarm(al)}/>}
+                {alarms.length === 0 && (
+                    <div className="log__table-container-no-alarms">
+                        <h1>No alarm logs could be found</h1>
+                    </div>
+                )}
             </div>
             <div className="log__details">
                 {alarm && <LogDetails alarmLog={alarm}/>}
