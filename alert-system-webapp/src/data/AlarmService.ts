@@ -6,5 +6,22 @@ export const GetAlarms = async (): Promise<AlarmLog[]> => {
 
 export const GetFormattedDate = (dateNumber: number) : string => {
     let dateToFormat = new Date(dateNumber);
-    return `${dateToFormat.getDate()}/${dateToFormat.getMonth()}/${dateToFormat.getFullYear()} ${dateToFormat.getHours()}:${dateToFormat.getMinutes()}`;
+
+    const date = ConvertOneDecimalToTwo(dateToFormat.getUTCDate());
+    const month = ConvertOneDecimalToTwo(dateToFormat.getUTCMonth() + 1); //First month is index zero. So plus one for the correct month
+    const year = dateToFormat.getUTCFullYear();
+    const hours = ConvertOneDecimalToTwo(dateToFormat.getUTCHours());
+    const minutes = ConvertOneDecimalToTwo(dateToFormat.getUTCMinutes());
+
+    const formattedDate = `${date}/${month}/${year} ${hours}:${minutes}`
+
+    return formattedDate;
 };
+
+const ConvertOneDecimalToTwo = (decimal: number) : string => {
+    if (decimal < 10) {
+        return `0${decimal}`
+    }
+
+    return `${decimal}`
+}
