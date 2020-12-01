@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {GetAlarms, GetFormattedDate} from "../../data/AlarmService";
 import {AlarmLog} from "../../models/AlarmLog";
 import './log.css';
+import LogDetails from './logDetails/logDetails';
 
 const Log: React.FC = () => {
     const [alarms, setAlarms] = useState<AlarmLog[]>([]);
@@ -79,51 +80,7 @@ const Log: React.FC = () => {
             </table>
             </div>
             <div className="log__details">
-                {alarm && (
-                    <div className="log__details-body">
-                        <h2 className="log__details-body-title">Machine: </h2>
-                        <h2 className="log__details-body-title-machine">{alarm.machine.machineId}</h2>
-                        <div className="log__details-info-box">
-                            <div className="log__details-info-box-row">
-                                <label className="log__details-info-box-row-label">Alarm code</label>
-                                <label className="log__details-info-box-row-data">{alarm.alarm.code}</label>
-                            </div>
-                            <div className="log__details-info-box-row">
-                                <label className="log__details-info-box-row-label">Alarm description</label>
-                                <label className="log__details-info-box-row-data">{alarm.alarm.description}</label>
-                            </div>
-                            <div className="log__details-info-box-row">
-                                <label className="log__details-info-box-row-label">Occured</label>
-                                <label className="log__details-info-box-row-data">{GetFormattedDate(alarm.date)}</label>
-                            </div>
-                        </div>
-                        <h2 className="log__details-history-title">History</h2>
-                        <div className="log__details-history-container">
-                            <table className="log__details-history">
-                                <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Last status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {alarmHistory.map((data, index) => {
-                                        return (
-                                            <tr key={`data-${index}`}>
-                                                <td>
-                                                    {GetFormattedDate(data.date)}
-                                                </td>
-                                                <td>
-                                                    {data.status}
-                                                </td>
-                                            </tr>
-                                        )
-                                    })}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                )}
+                {alarm && <LogDetails alarmLog={alarm}/>}
             </div>
         </div>
 )};
