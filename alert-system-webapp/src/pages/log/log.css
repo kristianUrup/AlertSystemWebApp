@@ -37,4 +37,5 @@
     background-color: #f2f2f2;
     border-left: 1px solid #d1d1d1;
     margin-left: -1px;
+    overflow: auto;
 }

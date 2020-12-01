@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { GetFormattedDate } from "../../../data/AlarmLogService";
-import { AlarmLog } from "../../../models/AlarmLog";
+import { AlarmLog, AlarmLogType } from "../../../models/AlarmLog";
+import { LogTypeElement } from "../../../shared/alarmLogTypeColor/alarmLogTypeElement";
 import "./logDetails.css"
 
 interface LogDetailsProp {
@@ -8,29 +9,29 @@ interface LogDetailsProp {
 }
 const LogDetails: React.FC<LogDetailsProp> = ({ alarmLog }) => {
 
-    const [alarmHistory, setAlarmHistory] = useState<{ date: Date, status: string}[]>([]);
+    const [alarmHistory, setAlarmHistory] = useState<{ date: Date, status: AlarmLogType}[]>([]);
     
     useEffect(() => {
         const list = [
             {
                 date: new Date(1606740918000),
-                status: "Dips"
+                status: AlarmLogType.DIPS
             },
             {
                 date: new Date(1606741098000),
-                status: "Escalate"
+                status: AlarmLogType.ESCALATE
             },
             {
                 date: new Date(1606741200000),
-                status: "Snooze"
+                status: AlarmLogType.SNOOZE
             },
             {
                 date: new Date(1606741500000),
-                status: "Snooze"
+                status: AlarmLogType.SNOOZE
             },
             {
                 date: new Date(1606741358000),
-                status: "Fixed"
+                status: AlarmLogType.FIXED
             },
         ];
 
@@ -73,7 +74,7 @@ const LogDetails: React.FC<LogDetailsProp> = ({ alarmLog }) => {
                                             {GetFormattedDate(data.date)}
                                         </td>
                                         <td>
-                                            {data.status}
+                                            {LogTypeElement(data.status)}
                                         </td>
                                     </tr>
                                 )
