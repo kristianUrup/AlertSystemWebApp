@@ -7,3 +7,11 @@ export interface AlarmLog {
     date: Date;
 }
 
+export enum AlarmLogType {
+    SENT = "Sent",
+    DIPS = "Dips",
+    ESCALATE = "Escalate",
+    SNOOZE = "Snooze",
+    FIXED = "Fixed"
+}
+
