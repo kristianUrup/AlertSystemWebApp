@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {GetAlarms} from "../../data/AlarmService";
+import {GetAlarms} from "../../data/AlarmLogService";
 import {AlarmLog} from "../../models/AlarmLog";
 import './log.css';
 import LogDetails from './logDetails/logDetails';

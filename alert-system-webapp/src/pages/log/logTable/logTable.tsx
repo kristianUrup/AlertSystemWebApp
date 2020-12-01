@@ -1,5 +1,5 @@
 import React from "react";
-import { GetFormattedDate } from "../../../data/AlarmService";
+import { GetFormattedDate } from "../../../data/AlarmLogService";
 import { AlarmLog } from "../../../models/AlarmLog";
 import "./logTable.css"
 
