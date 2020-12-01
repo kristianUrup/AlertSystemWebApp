@@ -7,39 +7,11 @@ import LogDetails from './logDetails/logDetails';
 const Log: React.FC = () => {
     const [alarms, setAlarms] = useState<AlarmLog[]>([]);
     const [alarm, setAlarm] = useState<AlarmLog>();
-    const [alarmHistory, setAlarmHistory] = useState<{ date: number, status: string}[]>([]);
 
     useEffect(() => {
         GetAlarms().then(list => {
             setAlarms(list);
         });
-    }, []);
-
-    useEffect(() => {
-        const list = [
-            {
-                date: 1606740918000,
-                status: "Dips"
-            },
-            {
-                date: 1606741098000,
-                status: "Escalate"
-            },
-            {
-                date: 1606741200000,
-                status: "Snooze"
-            },
-            {
-                date: 1606741500000,
-                status: "Snooze"
-            },
-            {
-                date: 1606741358000,
-                status: "Fixed"
-            },
-        ];
-
-        setAlarmHistory(list);
     }, []);
 
     return (
