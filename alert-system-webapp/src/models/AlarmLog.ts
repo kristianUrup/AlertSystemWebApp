@@ -4,6 +4,6 @@ import {Alarm} from "./Alarm";
 export interface AlarmLog {
     machine: Machine,
     alarm : Alarm,
-    date: number
+    date: Date;
 }
 

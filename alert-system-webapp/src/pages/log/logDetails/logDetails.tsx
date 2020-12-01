@@ -8,28 +8,28 @@ interface LogDetailsProp {
 }
 const LogDetails: React.FC<LogDetailsProp> = ({ alarmLog }) => {
 
-    const [alarmHistory, setAlarmHistory] = useState<{ date: number, status: string}[]>([]);
+    const [alarmHistory, setAlarmHistory] = useState<{ date: Date, status: string}[]>([]);
     
     useEffect(() => {
         const list = [
             {
-                date: 1606740918000,
+                date: new Date(1606740918000),
                 status: "Dips"
             },
             {
-                date: 1606741098000,
+                date: new Date(1606741098000),
                 status: "Escalate"
             },
             {
-                date: 1606741200000,
+                date: new Date(1606741200000),
                 status: "Snooze"
             },
             {
-                date: 1606741500000,
+                date: new Date(1606741500000),
                 status: "Snooze"
             },
             {
-                date: 1606741358000,
+                date: new Date(1606741358000),
                 status: "Fixed"
             },
         ];
