@@ -25,13 +25,42 @@ const Log: React.FC = () => {
 
             </div>
             <div className="log__table-container">
-                {alarms.length > 0 && <LogTable alarmLogs={alarms} setAlarm={al => setAlarm(al)}/>}
-                {alarms.length === 0 && (
-                    <div className="log__table-container-no-alarms">
-                        {!loading && <h1>No alarm logs could be found</h1>}
-                        {loading && <h1>Loading all logs...</h1>}
+                <div className="log__table-filter-container">
+                    <input type="date"/>
+                    <select>
+                        <option>13:00</option>
+                        <option>14:00</option>
+                        <option>15:00</option>
+                    </select>
+                    <select>
+                        <option>15 min</option>
+                        <option>30 min</option>
+                        <option>45 min</option>
+                        <option>1 time</option>
+                        <option>2 timer</option>
+                        <option>3 timer</option>
+                    </select>
+                    <select>
+                        <option>Sent</option>
+                        <option>Dips</option>
+                        <option>Escalate</option>
+                        <option>Snooze</option>
+                        <option>Fixed</option>
+                    </select>
+                    <div>
+                        <p>Filtering: </p>
+                        <button>ON</button>
                     </div>
-                )}
+                </div>
+                <div className="log__table-data-container">
+                    {alarms.length > 0 && <LogTable alarmLogs={alarms} setAlarm={al => setAlarm(al)}/>}
+                    {alarms.length === 0 && (
+                        <div className="log__table-container-no-alarms">
+                            {!loading && <h1>No alarm logs could be found</h1>}
+                            {loading && <h1>Loading all logs...</h1>}
+                        </div>
+                    )}
+                </div>
             </div>
             <div className="log__details">
                 {alarm && <LogDetails alarmLog={alarm}/>}
