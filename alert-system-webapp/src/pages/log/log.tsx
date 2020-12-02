@@ -14,6 +14,7 @@ const Log: React.FC = () => {
     const [filterHour, setFilterHour] = useState(0);
     const [filterTime, setFilterTime] = useState(0);
     const [filter, setFilter] = useState(false);
+    const [ascend, setAscend] = useState(false);
 
     useEffect(() => {
         setLoading(true);
@@ -54,6 +55,18 @@ const Log: React.FC = () => {
             return dateTime >= timeFrameTime && dateTime <= timeFrameTime + filterTime; 
         }
         return true;
+    }
+
+    const changesOrderOfList = () => {
+        setAscend(!ascend);
+        const filteredList = filterList.sort((a, b) => {
+            if (ascend) {
+                return b.date.getTime() - a.date.getTime();
+            } else {
+                return a.date.getTime() - b.date.getTime();
+            }
+        });
+        setFilterList(filteredList);
     }
 
     const createHourOptions = () => {
@@ -112,7 +125,8 @@ const Log: React.FC = () => {
                     </select>
                     <div>
                         <p>Filtering: </p>
-                    <button onClick={() => setFilter(!filter)}>{filter ? "ON" : "OFF"}</button>
+                        <button onClick={() => setFilter(!filter)}>{filter ? "ON" : "OFF"}</button>
+                        <button onClick={() => changesOrderOfList()}>{ascend ? "ASC" : "DESC"}</button>
                     </div>
                 </div>
                 <div className="log__table-data-container">
