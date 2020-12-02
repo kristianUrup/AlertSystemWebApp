@@ -35,6 +35,7 @@ const Log: React.FC = () => {
             filteredList = filteredList.filter(data => checkIfDateIsInTimeFrame(data.date));
             setFilterList(filteredList);
         }
+        console.log("filterAlarmLogs was called");
     }
 
     const checkIfDateIsEqual = (date: Date) => {
@@ -58,15 +59,15 @@ const Log: React.FC = () => {
     }
 
     const changesOrderOfList = () => {
-        setAscend(!ascend);
-        const filteredList = filterList.sort((a, b) => {
+        const sortedList = filterList.sort((a, b) => {
             if (ascend) {
                 return b.date.getTime() - a.date.getTime();
             } else {
                 return a.date.getTime() - b.date.getTime();
             }
         });
-        setFilterList(filteredList);
+        setFilterList(sortedList);
+        console.log("changesOrderOfList was called");
     }
 
     const createHourOptions = () => {
@@ -84,6 +85,10 @@ const Log: React.FC = () => {
             setFilterList(alarms);
         }
     }, [filterDate, filter, filterHour, filterTime])
+
+    useEffect(() => {
+        changesOrderOfList();
+    }, [ascend])
 
     return (
         <div className="log__page">
@@ -125,8 +130,12 @@ const Log: React.FC = () => {
                     </select>
                     <div>
                         <p>Filtering: </p>
-                        <button onClick={() => setFilter(!filter)}>{filter ? "ON" : "OFF"}</button>
-                        <button onClick={() => changesOrderOfList()}>{ascend ? "ASC" : "DESC"}</button>
+                        <button onClick={() => setFilter(!filter)}>
+                            {filter ? "ON" : "OFF"}
+                        </button>
+                        <button onClick={() => setAscend(!ascend)} disabled={!filter}>
+                            {ascend ? "ASC" : "DESC"}
+                        </button>
                     </div>
                 </div>
                 <div className="log__table-data-container">
