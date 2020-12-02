@@ -4,6 +4,14 @@ import {Alarm} from "./Alarm";
 export interface AlarmLog {
     machine: Machine,
     alarm : Alarm,
-    date: number
+    date: Date;
+}
+
+export enum AlarmLogType {
+    SENT = "Sent",
+    DIPS = "Dips",
+    ESCALATE = "Escalate",
+    SNOOZE = "Snooze",
+    FIXED = "Fixed"
 }
 

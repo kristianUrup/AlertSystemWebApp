@@ -1,0 +1,75 @@
+.log-details__body {
+    padding-left: 70px;
+}
+
+.log-details__body-title {
+    margin-bottom: 0px;
+    font-size: 30px;
+}
+
+.log-details__body-title-machine {
+    margin-top: 3px;
+    font-size: 20px;
+}
+
+.log-details__info-box {
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    height: 200px;
+    width: 400px;
+}
+
+.log-details__info-box-row {
+    position: relative;
+    border-bottom: 1px solid #d1d1d1;
+    height: 66.6px;
+}
+
+.log-details__info-box > div:last-of-type {
+    border-bottom: 0px;
+}
+
+.log-details__info-box-row-label {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.log-details__info-box-row-data {
+    position: absolute;
+    top: 22px;
+    left: 9px;
+    font-weight: 700;
+}
+
+.log-details__history-title {
+    margin-bottom: 0px;
+}
+
+.log-details__history-container {
+    width: 400px;
+}
+
+.log-details__history {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+    border: 1px solid #d1d1d1;
+}
+
+.log-details__history > thead > tr > th {
+    text-align: left;
+    padding-left: 15px;
+}
+
+.log-details__history > tbody > tr {
+    border-top: 1px solid #d1d1d1;
+    height: 40px;
+}
+
+.log-details__history > tbody > tr > td {
+    text-align: left;
+    padding-left: 15px;
+}

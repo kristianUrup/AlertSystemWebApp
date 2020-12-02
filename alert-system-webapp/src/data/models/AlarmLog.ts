@@ -2,8 +2,8 @@ import {Machine} from "../../models/Machine";
 import {Alarm} from "../../models/Alarm";
 
 export interface AlarmLog {
-    machineID: Machine,
-    alarmID : Alarm,
+    machine: Machine,
+    alarm: Alarm,
     date: number
 }
 
