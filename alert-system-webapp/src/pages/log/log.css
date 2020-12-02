@@ -19,6 +19,7 @@
 .log__table-container-no-alarms {
     position: relative;
     width: 100%;
+    height: 86vh;
     margin: 0;
 }
 

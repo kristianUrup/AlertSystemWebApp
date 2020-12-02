@@ -8,10 +8,14 @@ import LogTable from './logTable/logTable';
 const Log: React.FC = () => {
     const [alarms, setAlarms] = useState<AlarmLog[]>([]);
     const [alarm, setAlarm] = useState<AlarmLog>();
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        setLoading(true);
         GetAlarms().then(list => {
             setAlarms(list);
+        }).finally(() => {
+            setLoading(false);
         });
     }, []);
 
@@ -24,7 +28,8 @@ const Log: React.FC = () => {
                 {alarms.length > 0 && <LogTable alarmLogs={alarms} setAlarm={al => setAlarm(al)}/>}
                 {alarms.length === 0 && (
                     <div className="log__table-container-no-alarms">
-                        <h1>No alarm logs could be found</h1>
+                        {!loading && <h1>No alarm logs could be found</h1>}
+                        {loading && <h1>Loading all logs...</h1>}
                     </div>
                 )}
             </div>
