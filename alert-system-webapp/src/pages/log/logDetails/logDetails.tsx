@@ -30,7 +30,7 @@ const LogDetails: React.FC<LogDetailsProp> = ({ alarmLog }) => {
                 status: AlarmLogType.SNOOZE
             },
             {
-                date: new Date(1606741358000),
+                date: new Date(1606741538000),
                 status: AlarmLogType.FIXED
             },
         ];
@@ -63,7 +63,7 @@ const LogDetails: React.FC<LogDetailsProp> = ({ alarmLog }) => {
                         <thead>
                             <tr>
                                 <th>Date</th>
-                                <th>Last status</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>

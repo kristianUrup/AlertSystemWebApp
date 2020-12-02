@@ -2,7 +2,7 @@ import {AlarmLog} from './models/AlarmLog';
 import {AlarmLog as AlarmLogModel} from '../models/AlarmLog';
 
 export const GetAlarms = async (): Promise<AlarmLogModel[]> => {
-    const alarmLogs: AlarmLog[] = await fetch('http://localhost:7071/api/AlarmLog').then(response => response.json());
+    const alarmLogs: AlarmLog[] = await fetch('http://localhost:7071/api/alarmlog').then(response => response.json());
 
     return alarmLogs.map(alarmLog => ({
         alarm: alarmLog.alarm,
@@ -13,11 +13,11 @@ export const GetAlarms = async (): Promise<AlarmLogModel[]> => {
 
 export const GetFormattedDate = (dateToFormat: Date) : string => {
 
-    const date = ConvertOneDecimalToTwo(dateToFormat.getUTCDate());
-    const month = ConvertOneDecimalToTwo(dateToFormat.getUTCMonth() + 1); //First month is index zero. So plus one for the correct month
-    const year = dateToFormat.getUTCFullYear();
-    const hours = ConvertOneDecimalToTwo(dateToFormat.getUTCHours());
-    const minutes = ConvertOneDecimalToTwo(dateToFormat.getUTCMinutes());
+    const date = ConvertOneDecimalToTwo(dateToFormat.getDate());
+    const month = ConvertOneDecimalToTwo(dateToFormat.getMonth() + 1); //First month is index zero. So plus one for the correct month
+    const year = dateToFormat.getFullYear();
+    const hours = ConvertOneDecimalToTwo(dateToFormat.getHours());
+    const minutes = ConvertOneDecimalToTwo(dateToFormat.getMinutes());
 
     const formattedDate = `${date}/${month}/${year} ${hours}:${minutes}`
 
