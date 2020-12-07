@@ -6,3 +6,49 @@
 .log-filter__container > div {
     float: left;
 }
+
+.log-filter__settings {
+    position: relative;
+    width: 15%;
+    height: 100%;
+    border-right: 1px solid #d1d1d1;
+    margin-left: -1px;
+}
+
+.log-filter__settings > div {
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+}
+
+.log-filter__settings > button {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 40%;
+    width: 90px;
+    height: 50px;
+    font-weight: 700;
+    color: white;
+    font-size: 20px;
+    border: 0px;
+    border-radius: 4px;
+}
+
+.log-filter__settings > button:focus {
+    border: 0px;
+}
+
+.log-filter__options {
+    position: relative;
+    width: 25%;
+    height: 100%;
+    border-right: 1px solid #d1d1d1;
+    margin-left: -1px;
+}
+
+.log-filter__filtering {
+    position: relative;
+    width: 60%;
+    height: 100%;
+}

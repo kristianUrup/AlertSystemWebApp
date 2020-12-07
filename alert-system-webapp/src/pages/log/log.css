@@ -18,7 +18,7 @@
 .log__table-filter-container {
     height: 16vh;
     border-bottom: 1px solid #d1d1d1;
-    margin-bottom: -1px;
+    margin-top: -1px;
 }
 
 .log__table-data-container {

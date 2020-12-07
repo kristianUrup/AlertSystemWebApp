@@ -110,69 +110,71 @@ const LogFilter: React.FC<LogFilterProps> = ({ alarmLogs, setAlarmLogs }) => {
     
     return (
         <div className="log-filter__container">
-            <input type="date" onChange={date => setFilterDate(new Date(date.target.value))} value={getDateInputFormat()}/>
-            {useFilterHour && (
-                <>
-                    <select onChange={hour => setFilterHour(parseInt(hour.target.value))}>
-                        {createHourOptions().map((data) => {
-                            let optionText = "";
-                            if (data < 10) {
-                                optionText = `0${data}:00`;
-                            } else {
-                                optionText = `${data}:00`;
-                            }
-
-                            return (
-                                <option value={data} key={data}>{optionText}</option>
-                                );
-                        })}
-                    </select>
-                    <select onChange={data => setFilterTime(parseInt(data.target.value))}>
-                        <option value={0}>0 min</option>
-                        <option value={900000}>15 min</option>
-                        <option value={1800000}>30 min</option>
-                        <option value={2700000}>45 min</option>
-                        <option value={3600000}>1 time</option>
-                        <option value={7200000}>2 timer</option>
-                        <option value={10800000}>3 timer</option>
-                    </select>
-                </>
-            )}
-            {useFilterStatus && 
-                <select>
-                    <option>Sent</option>
-                    <option>Dips</option>
-                    <option>Escalate</option>
-                    <option>Snooze</option>
-                    <option>Fixed</option>
-                </select>
-            }
-            <div>
-                <p>Filtering: </p>
-                <button onClick={() => setFilter(!filter)}>
+            <div className="log-filter__settings">
+                <div>
+                    Filter settings
+                </div>
+                <button onClick={() => setFilter(!filter)} style={{ backgroundColor: filter ? "#2bcf57" : "#ff3e30" }}>
                     {filter ? "ON" : "OFF"}
                 </button>
-                <button onClick={() => setAscend(!ascend)} disabled={!filter}>
+            </div>
+            <div className="log-filter__options">
+                <p>Filtering options</p>
+                <button 
+                    onClick={() => setUseFilterHour(!useFilterHour)}
+                    style={{ backgroundColor: useFilterHour ? "#56b1db" : "" }}
+                >
+                    Use time
+                </button>
+                <button
+                    onClick={() => setUseFilterStatus(!useFilterStatus)}
+                    style={{ backgroundColor: useFilterStatus ? "#56b1db" : "" }}
+                >
+                    Use last status
+                </button>
+                <button onClick={() => setAscend(!ascend)}>
                     {ascend ? "ASC" : "DESC"}
                 </button>
             </div>
-            {filter && 
-                <div>
-                    <p>Filter options: </p>
-                    <button 
-                        onClick={() => setUseFilterHour(!useFilterHour)}
-                        style={{ backgroundColor: useFilterHour ? "#56b1db" : "" }}
-                    >
-                        Use time
-                    </button>
-                    <button
-                        onClick={() => setUseFilterStatus(!useFilterStatus)}
-                        style={{ backgroundColor: useFilterStatus ? "#56b1db" : "" }}
-                    >
-                        Use last status
-                    </button>
-                </div>
-            }
+            <div className="log-filter__filtering">
+                <input type="date" onChange={date => setFilterDate(new Date(date.target.value))} value={getDateInputFormat()}/>
+                {useFilterHour && (
+                    <>
+                        <select onChange={hour => setFilterHour(parseInt(hour.target.value))}>
+                            {createHourOptions().map((data) => {
+                                let optionText = "";
+                                if (data < 10) {
+                                    optionText = `0${data}:00`;
+                                } else {
+                                    optionText = `${data}:00`;
+                                }
+
+                                return (
+                                    <option value={data} key={data}>{optionText}</option>
+                                    );
+                            })}
+                        </select>
+                        <select onChange={data => setFilterTime(parseInt(data.target.value))}>
+                            <option value={0}>0 min</option>
+                            <option value={900000}>15 min</option>
+                            <option value={1800000}>30 min</option>
+                            <option value={2700000}>45 min</option>
+                            <option value={3600000}>1 time</option>
+                            <option value={7200000}>2 timer</option>
+                            <option value={10800000}>3 timer</option>
+                        </select>
+                    </>
+                )}
+                {useFilterStatus && 
+                    <select>
+                        <option>Sent</option>
+                        <option>Dips</option>
+                        <option>Escalate</option>
+                        <option>Snooze</option>
+                        <option>Fixed</option>
+                    </select>
+                }
+            </div>
         </div>
     );
 }
