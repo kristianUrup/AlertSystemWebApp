@@ -1,0 +1,8 @@
+.log-filter__container {
+    width: 100%;
+    height: 100%;
+}
+
+.log-filter__container > div {
+    float: left;
+}

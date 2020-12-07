@@ -21,10 +21,6 @@
     margin-bottom: -1px;
 }
 
-.log__table-filter-container > div {
-    float: left;
-}
-
 .log__table-data-container {
     height: 70vh;
     overflow: auto;
