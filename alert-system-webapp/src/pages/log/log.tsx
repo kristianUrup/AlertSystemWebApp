@@ -61,7 +61,13 @@ const Log: React.FC = () => {
     const changesOrderOfList = () => {
         let sortedList: AlarmLog[] = [];
 
-        sortedList = filterList.reverse();
+        sortedList = filterList.sort((a, b)=> {
+            if (ascend) {
+                return b.date.getTime() - a.date.getTime();
+            } else {
+                return a.date.getTime() - b.date.getTime();
+            }
+        });
 
         setFilterList(sortedList);
         console.log("changesOrderOfList was called");
@@ -78,7 +84,9 @@ const Log: React.FC = () => {
     useEffect(() => {
         if (filter) {
             filterAlarmLogs();
+            console.log("filter");
         } else {
+            console.log("alarms");
             setFilterList(alarms);
         }
     }, [filterDate, filter, filterHour, filterTime])
