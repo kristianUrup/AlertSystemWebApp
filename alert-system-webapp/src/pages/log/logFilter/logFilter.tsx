@@ -9,7 +9,7 @@ interface LogFilterProps {
 
 const LogFilter: React.FC<LogFilterProps> = ({ alarmLogs, setAlarmLogs }) => {
     
-    const [filterList, setFilterList] = useState<AlarmLog[]>([]);
+    const [filterList] = useState<AlarmLog[]>([]);
     const [filterDate, setFilterDate] = useState<Date>();
     const [filterHour, setFilterHour] = useState(0);
     const [filterTime, setFilterTime] = useState(0);
@@ -75,13 +75,30 @@ const LogFilter: React.FC<LogFilterProps> = ({ alarmLogs, setAlarmLogs }) => {
         return numbers;
     }
 
+    const getDateInputFormat = () => {
+        if (filterDate) {
+            const month = filterDate.getMonth() < 10 ? `0${filterDate.getMonth()}` : `${filterDate.getMonth()}`
+            const date = filterDate.getDate() < 10 ? `0${filterDate.getDate()}` : `${filterDate.getDate()}`
+            return `${filterDate.getFullYear()}-${month}-${date}`;
+        } else {
+            return "";
+        }
+    }
+
+    const resetInputs = () => {
+        setFilterDate(undefined);
+        setFilterHour(0);
+        setFilterTime(0);
+        setUseFilterHour(false);
+        setUseFilterStatus(false);
+    }
+
     useEffect(() => {
         if (filter) {
             filterAlarmLogs();
-            console.log("filter");
         } else {
-            console.log("alarms");
             setAlarmLogs(alarmLogs);
+            resetInputs();
         }
     }, [filterDate, filter, filterHour, filterTime, useFilterHour, useFilterStatus])
 
@@ -93,7 +110,7 @@ const LogFilter: React.FC<LogFilterProps> = ({ alarmLogs, setAlarmLogs }) => {
     
     return (
         <div className="log-filter__container">
-            <input type="date" onChange={date => setFilterDate(new Date(date.target.value))}/>
+            <input type="date" onChange={date => setFilterDate(new Date(date.target.value))} value={getDateInputFormat()}/>
             {useFilterHour && (
                 <>
                     <select onChange={hour => setFilterHour(parseInt(hour.target.value))}>
@@ -139,21 +156,23 @@ const LogFilter: React.FC<LogFilterProps> = ({ alarmLogs, setAlarmLogs }) => {
                     {ascend ? "ASC" : "DESC"}
                 </button>
             </div>
-            <div>
-                <p>Filter options: </p>
-                <button 
-                    onClick={() => setUseFilterHour(!useFilterHour)}
-                    style={{ backgroundColor: useFilterHour ? "#56b1db" : "" }}
-                >
-                    Use time
-                </button>
-                <button
-                    onClick={() => setUseFilterStatus(!useFilterStatus)}
-                    style={{ backgroundColor: useFilterStatus ? "#56b1db" : "" }}
-                >
-                    Use last status
-                </button>
-            </div>
+            {filter && 
+                <div>
+                    <p>Filter options: </p>
+                    <button 
+                        onClick={() => setUseFilterHour(!useFilterHour)}
+                        style={{ backgroundColor: useFilterHour ? "#56b1db" : "" }}
+                    >
+                        Use time
+                    </button>
+                    <button
+                        onClick={() => setUseFilterStatus(!useFilterStatus)}
+                        style={{ backgroundColor: useFilterStatus ? "#56b1db" : "" }}
+                    >
+                        Use last status
+                    </button>
+                </div>
+            }
         </div>
     );
 }
