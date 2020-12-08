@@ -181,9 +181,9 @@ const LogFilter: React.FC<LogFilterProps> = ({ alarmLogs, setAlarmLogs }) => {
                                 <option value={900000}>15 min</option>
                                 <option value={1800000}>30 min</option>
                                 <option value={2700000}>45 min</option>
-                                <option value={3600000}>1 time</option>
-                                <option value={7200000}>2 timer</option>
-                                <option value={10800000}>3 timer</option>
+                                <option value={3600000}>1 hour</option>
+                                <option value={7200000}>2 hours</option>
+                                <option value={10800000}>3 hours</option>
                             </select>
                         </>
                     )}
