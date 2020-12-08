@@ -33,10 +33,12 @@
     font-size: 20px;
     border: 0px;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 .log-filter__settings > button:focus {
     border: 0px;
+    outline: none;
 }
 
 .log-filter__options {
@@ -45,6 +47,57 @@
     height: 100%;
     border-right: 1px solid #d1d1d1;
     margin-left: -1px;
+}
+
+.log-filter__options > button {
+    display: block;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 5px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+.log-filter__options-title {
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+}
+
+.log-filter__options-filters {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #d1d1d1;
+}
+
+.log-filter__options-filters > button {
+    display: block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 5px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.log-filter__options-button-on {
+    background-color: #337ab7;
+    color: white;
+    border: 1px solid #337ab7;
+    outline: none;
+}
+
+.log-filter__options-button-on:focus {
+    border: 1px solid #337ab7;
+    outline: none;
+}
+
+.log-filter__options-button-off {
+    background-color: white;
+    border: 1px solid #d8d8d8;
+}
+
+.log-filter__options-button-off:focus {
+    outline: none;
 }
 
 .log-filter__filtering {

@@ -119,20 +119,24 @@ const LogFilter: React.FC<LogFilterProps> = ({ alarmLogs, setAlarmLogs }) => {
                 </button>
             </div>
             <div className="log-filter__options">
-                <p>Filtering options</p>
-                <button 
-                    onClick={() => setUseFilterHour(!useFilterHour)}
-                    style={{ backgroundColor: useFilterHour ? "#56b1db" : "" }}
-                >
-                    Use time
-                </button>
-                <button
-                    onClick={() => setUseFilterStatus(!useFilterStatus)}
-                    style={{ backgroundColor: useFilterStatus ? "#56b1db" : "" }}
-                >
-                    Use last status
-                </button>
-                <button onClick={() => setAscend(!ascend)}>
+                <div className="log-filter__options-title">Filtering options</div>
+                <div className="log-filter__options-filters">
+                    <button
+                        className={`${useFilterHour ? "log-filter__options-button-on" : "log-filter__options-button-off"}`}
+                        onClick={() => setUseFilterHour(!useFilterHour)}
+                        disabled={!filter}
+                    >
+                        Use time
+                    </button>
+                    <button
+                        className={`${useFilterStatus ? "log-filter__options-button-on" : "log-filter__options-button-off"}`}
+                        onClick={() => setUseFilterStatus(!useFilterStatus)}
+                        disabled={!filter}
+                    >
+                        Use last status
+                    </button>
+                </div>
+                <button onClick={() => setAscend(!ascend)} disabled={!filter}>
                     {ascend ? "ASC" : "DESC"}
                 </button>
             </div>
