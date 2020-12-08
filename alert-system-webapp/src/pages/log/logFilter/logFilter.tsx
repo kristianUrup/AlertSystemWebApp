@@ -52,23 +52,6 @@ const LogFilter: React.FC<LogFilterProps> = ({ alarmLogs, setAlarmLogs }) => {
         return true;
     }
 
-    const changesOrderOfList = () => {
-        setAscend(!ascend);
-
-        let sortedList: AlarmLog[] = [];
-
-
-        sortedList = alarmLogs.sort((a, b)=> {
-            if (ascend) {
-                return b.date.getTime() - a.date.getTime();
-            } else {
-                return a.date.getTime() - b.date.getTime();
-            }
-        });
-
-        setAlarmLogs(sortedList);
-    }
-
     const createHourOptions = () => {
         const numbers: number[] = [];
         for (let i = 0; i < 24; i++) {
@@ -98,7 +81,7 @@ const LogFilter: React.FC<LogFilterProps> = ({ alarmLogs, setAlarmLogs }) => {
 
     useEffect(() => {
         if (filter) {
-            setAlarmLogs(alarmLogs);
+            filterAlarmLogs();
         } else {
             setAlarmLogs(alarmLogs);
             resetInputs();
@@ -123,19 +106,16 @@ const LogFilter: React.FC<LogFilterProps> = ({ alarmLogs, setAlarmLogs }) => {
                         onClick={() => setUseFilterHour(!useFilterHour)}
                         disabled={!filter}
                     >
-                        Use time
+                        Time
                     </button>
                     <button
                         className={`${useFilterStatus ? "log-filter__options-button-on" : "log-filter__options-button-off"}`}
                         onClick={() => setUseFilterStatus(!useFilterStatus)}
                         disabled={!filter}
                     >
-                        Use last status
+                        Last status
                     </button>
                 </div>
-                <button onClick={() => changesOrderOfList()} disabled={!filter}>
-                    {ascend ? "ASC" : "DESC"}
-                </button>
             </div>
             <div className="log-filter__filtering">
                 <div className="log-filter__filtering-title">Filters</div>

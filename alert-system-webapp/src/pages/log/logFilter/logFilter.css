@@ -64,17 +64,13 @@
     font-weight: 700;
 }
 
-.log-filter__options-filters {
-    padding-bottom: 5px;
-    border-bottom: 1px solid #d1d1d1;
-}
-
 .log-filter__options-filters > button {
     display: block;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    margin-top: 5px;
+    height: 30px;
+    margin-top: 10px;
     border-radius: 4px;
     font-weight: 600;
 }
