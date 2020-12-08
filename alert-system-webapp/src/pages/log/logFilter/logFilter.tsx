@@ -76,7 +76,7 @@ const LogFilter: React.FC<LogFilterProps> = ({ alarmLogs, setAlarmLogs }) => {
     const setLastStatusFilter = (value: string) => {
         switch (value) {
             case "Dips":
-                setFilterStatus(AlarmLogType.DIPS);
+                setFilterStatus(AlarmLogType.DIBS);
                 break;
             case "Fixed":
                 setFilterStatus(AlarmLogType.FIXED);
@@ -190,7 +190,7 @@ const LogFilter: React.FC<LogFilterProps> = ({ alarmLogs, setAlarmLogs }) => {
                     {useFilterStatus && 
                         <select onChange={data => setLastStatusFilter(data.target.value)} value={filterStatus}>
                             <option value={AlarmLogType.SENT}>Sent</option>
-                            <option value={AlarmLogType.DIPS}>Dips</option>
+                            <option value={AlarmLogType.DIBS}>Dibs</option>
                             <option value={AlarmLogType.ESCALATE}>Escalate</option>
                             <option value={AlarmLogType.SNOOZE}>Snooze</option>
                             <option value={AlarmLogType.FIXED}>Fixed</option>

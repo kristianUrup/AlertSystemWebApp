@@ -5,7 +5,7 @@ export const LogTypeElement = (alt: AlarmLogType) => {
 
     const GetColorForType = (): string => {
         switch (alt) {
-            case AlarmLogType.DIPS:
+            case AlarmLogType.DIBS:
                 return "#fcf000";
             case AlarmLogType.ESCALATE:
                 return "#ff7b00"
