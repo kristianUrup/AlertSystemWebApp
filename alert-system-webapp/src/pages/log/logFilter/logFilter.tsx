@@ -141,6 +141,7 @@ const LogFilter: React.FC<LogFilterProps> = ({ alarmLogs, setAlarmLogs }) => {
                 </button>
             </div>
             <div className="log-filter__filtering">
+                <div className="log-filter__filtering-elements">
                 <input type="date" onChange={date => setFilterDate(new Date(date.target.value))} value={getDateInputFormat()}/>
                 {useFilterHour && (
                     <>
@@ -178,6 +179,7 @@ const LogFilter: React.FC<LogFilterProps> = ({ alarmLogs, setAlarmLogs }) => {
                         <option>Fixed</option>
                     </select>
                 }
+                </div>
             </div>
         </div>
     );
