@@ -77,7 +77,7 @@ const LogFilter: React.FC<LogFilterProps> = ({ alarmLogs, setAlarmLogs }) => {
 
     const getDateInputFormat = () => {
         if (filterDate) {
-            const month = filterDate.getMonth() < 10 ? `0${filterDate.getMonth()}` : `${filterDate.getMonth()}`
+            const month = filterDate.getMonth() + 1 < 10 ? `0${filterDate.getMonth() + 1}` : `${filterDate.getMonth() + 1}`
             const date = filterDate.getDate() < 10 ? `0${filterDate.getDate()}` : `${filterDate.getDate()}`
             return `${filterDate.getFullYear()}-${month}-${date}`;
         } else {
