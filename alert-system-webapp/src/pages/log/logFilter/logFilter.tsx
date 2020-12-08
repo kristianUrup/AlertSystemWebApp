@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AlarmLog } from "../../../models/AlarmLog";
+import { AlarmLog, AlarmLogType } from "../../../models/AlarmLog";
 import "./logFilter.css"
 
 interface LogFilterProps {
@@ -8,28 +8,31 @@ interface LogFilterProps {
 }
 
 const LogFilter: React.FC<LogFilterProps> = ({ alarmLogs, setAlarmLogs }) => {
-    
-    const [filterList] = useState<AlarmLog[]>([]);
+
     const [filterDate, setFilterDate] = useState<Date>();
     const [filterHour, setFilterHour] = useState(0);
     const [filterTime, setFilterTime] = useState(0);
+    const [filterStatus, setFilterStatus] = useState<AlarmLogType>(AlarmLogType.SENT);
     const [filter, setFilter] = useState(false);
     const [useFilterHour, setUseFilterHour] = useState(false);
     const [useFilterStatus, setUseFilterStatus] = useState(false);
-    const [ascend, setAscend] = useState(false);
 
     const filterAlarmLogs = () => {
-        let filteredList = [];
+        let filteredList = alarmLogs;
 
         if (filterDate) {
-            filteredList = alarmLogs.filter(data => checkIfDateIsEqual(data.date));
+            filteredList = filteredList.filter(data => checkIfDateIsEqual(data.date));
 
             if (useFilterHour) {
                 filteredList = filteredList.filter(data => checkIfDateIsInTimeFrame(data.date));
             }
-            setAlarmLogs(filteredList);
         }
-        console.log("filterAlarmLogs was called");
+
+        if (useFilterStatus) {
+            filteredList = filteredList.filter(data => data.lastStatus === filterStatus);
+        }
+
+        setAlarmLogs(filteredList);
     }
 
     const checkIfDateIsEqual = (date: Date) => {
@@ -70,13 +73,43 @@ const LogFilter: React.FC<LogFilterProps> = ({ alarmLogs, setAlarmLogs }) => {
         }
     }
 
+    const setLastStatusFilter = (value: string) => {
+        switch (value) {
+            case "Dips":
+                setFilterStatus(AlarmLogType.DIPS);
+                break;
+            case "Fixed":
+                setFilterStatus(AlarmLogType.FIXED);
+                break;
+            case "Escalate":
+                setFilterStatus(AlarmLogType.ESCALATE);
+                break;
+            case "Sent":
+                setFilterStatus(AlarmLogType.SENT);
+                break;
+            case "Snooze":
+                setFilterStatus(AlarmLogType.SNOOZE);
+                break;
+        }
+    }
+
     const resetInputs = () => {
         setFilterDate(undefined);
         setFilterHour(0);
         setFilterTime(0);
+        setFilterStatus(AlarmLogType.SENT);
         setUseFilterHour(false);
         setUseFilterStatus(false);
-        setAscend(false);
+    }
+
+    const resetSpecificInputs = () => {
+        if (!useFilterHour) {
+            setFilterHour(0);
+            setFilterTime(0);
+        }
+        if (!useFilterStatus) {
+            setFilterStatus(AlarmLogType.SENT);
+        }
     }
 
     useEffect(() => {
@@ -86,7 +119,13 @@ const LogFilter: React.FC<LogFilterProps> = ({ alarmLogs, setAlarmLogs }) => {
             setAlarmLogs(alarmLogs);
             resetInputs();
         }
-    }, [filterDate, filter, filterHour, filterTime, useFilterHour, useFilterStatus])
+    }, [filterDate, filter, filterHour, filterTime, useFilterHour, useFilterStatus, filterStatus])
+
+    useEffect(() => {
+        if (filter) {
+            resetSpecificInputs()
+        }
+    }, [useFilterHour, useFilterStatus])
     
     return (
         <div className="log-filter__container">
@@ -149,12 +188,12 @@ const LogFilter: React.FC<LogFilterProps> = ({ alarmLogs, setAlarmLogs }) => {
                         </>
                     )}
                     {useFilterStatus && 
-                        <select>
-                            <option>Sent</option>
-                            <option>Dips</option>
-                            <option>Escalate</option>
-                            <option>Snooze</option>
-                            <option>Fixed</option>
+                        <select onChange={data => setLastStatusFilter(data.target.value)} value={filterStatus}>
+                            <option value={AlarmLogType.SENT}>Sent</option>
+                            <option value={AlarmLogType.DIPS}>Dips</option>
+                            <option value={AlarmLogType.ESCALATE}>Escalate</option>
+                            <option value={AlarmLogType.SNOOZE}>Snooze</option>
+                            <option value={AlarmLogType.FIXED}>Fixed</option>
                         </select>
                     }
                 </div>

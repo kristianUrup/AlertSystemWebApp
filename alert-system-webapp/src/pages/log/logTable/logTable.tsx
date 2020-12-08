@@ -34,7 +34,7 @@ const LogTable: React.FC<LogTableProps> = ({ alarmLogs, setAlarm }) => {
                                 {GetFormattedDate(data.date)}
                             </td>
                             <td>
-                                {LogTypeElement(AlarmLogType.FIXED)}
+                                {LogTypeElement(data.lastStatus)}
                             </td>
                             </tr>
                         )

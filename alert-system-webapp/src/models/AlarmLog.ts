@@ -5,6 +5,7 @@ export interface AlarmLog {
     machine: Machine,
     alarm : Alarm,
     date: Date;
+    lastStatus: AlarmLogType;
 }
 
 export enum AlarmLogType {
