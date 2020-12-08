@@ -7,7 +7,7 @@ import LogFilter from './logFilter/logFilter';
 import LogTable from './logTable/logTable';
 
 const Log: React.FC = () => {
-    const [alarmsLogs, setAlarmsLogs] = useState<AlarmLog[]>([]);
+    const [alarmLogs, setAlarmLogs] = useState<AlarmLog[]>([]);
     const [alarm, setAlarm] = useState<AlarmLog>();
     const [loading, setLoading] = useState(false);
     const [filterList, setFilterList] = useState<AlarmLog[]>([]);
@@ -15,7 +15,7 @@ const Log: React.FC = () => {
     useEffect(() => {
         setLoading(true);
         GetAlarms().then(list => {
-            setAlarmsLogs(list);
+            setAlarmLogs(list);
             setFilterList(list);
         }).finally(() => {
             setLoading(false);
@@ -29,7 +29,7 @@ const Log: React.FC = () => {
             </div>
             <div className="log__table-container">
                 <div className="log__table-filter-container">
-                    <LogFilter alarmLogs={alarmsLogs} setAlarmLogs={als => setFilterList(als)} />
+                    <LogFilter alarmLogs={alarmLogs} setAlarmLogs={als => setFilterList(als)} />
                 </div>
                 <div className="log__table-data-container">
                     {filterList.length > 0 && <LogTable alarmLogs={filterList} setAlarm={al => setAlarm(al)}/>}

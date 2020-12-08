@@ -53,9 +53,12 @@ const LogFilter: React.FC<LogFilterProps> = ({ alarmLogs, setAlarmLogs }) => {
     }
 
     const changesOrderOfList = () => {
+        setAscend(!ascend);
+
         let sortedList: AlarmLog[] = [];
 
-        sortedList = filterList.sort((a, b)=> {
+
+        sortedList = alarmLogs.sort((a, b)=> {
             if (ascend) {
                 return b.date.getTime() - a.date.getTime();
             } else {
@@ -64,7 +67,6 @@ const LogFilter: React.FC<LogFilterProps> = ({ alarmLogs, setAlarmLogs }) => {
         });
 
         setAlarmLogs(sortedList);
-        console.log("changesOrderOfList was called");
     }
 
     const createHourOptions = () => {
@@ -91,22 +93,17 @@ const LogFilter: React.FC<LogFilterProps> = ({ alarmLogs, setAlarmLogs }) => {
         setFilterTime(0);
         setUseFilterHour(false);
         setUseFilterStatus(false);
+        setAscend(false);
     }
 
     useEffect(() => {
         if (filter) {
-            filterAlarmLogs();
+            setAlarmLogs(alarmLogs);
         } else {
             setAlarmLogs(alarmLogs);
             resetInputs();
         }
     }, [filterDate, filter, filterHour, filterTime, useFilterHour, useFilterStatus])
-
-    useEffect(() => {
-        if (filter) {
-            changesOrderOfList();
-        }
-    }, [ascend])
     
     return (
         <div className="log-filter__container">
@@ -136,49 +133,50 @@ const LogFilter: React.FC<LogFilterProps> = ({ alarmLogs, setAlarmLogs }) => {
                         Use last status
                     </button>
                 </div>
-                <button onClick={() => setAscend(!ascend)} disabled={!filter}>
+                <button onClick={() => changesOrderOfList()} disabled={!filter}>
                     {ascend ? "ASC" : "DESC"}
                 </button>
             </div>
             <div className="log-filter__filtering">
+                <div className="log-filter__filtering-title">Filters</div>
                 <div className="log-filter__filtering-elements">
-                <input type="date" onChange={date => setFilterDate(new Date(date.target.value))} value={getDateInputFormat()}/>
-                {useFilterHour && (
-                    <>
-                        <select onChange={hour => setFilterHour(parseInt(hour.target.value))}>
-                            {createHourOptions().map((data) => {
-                                let optionText = "";
-                                if (data < 10) {
-                                    optionText = `0${data}:00`;
-                                } else {
-                                    optionText = `${data}:00`;
-                                }
+                    <input type="date" onChange={date => setFilterDate(new Date(date.target.value))} value={getDateInputFormat()}/>
+                    {useFilterHour && (
+                        <>
+                            <select onChange={hour => setFilterHour(parseInt(hour.target.value))}>
+                                {createHourOptions().map((data) => {
+                                    let optionText = "";
+                                    if (data < 10) {
+                                        optionText = `0${data}:00`;
+                                    } else {
+                                        optionText = `${data}:00`;
+                                    }
 
-                                return (
-                                    <option value={data} key={data}>{optionText}</option>
+                                    return (
+                                        <option value={data} key={data}>{optionText}</option>
                                     );
-                            })}
+                                })}
+                            </select>
+                            <select onChange={data => setFilterTime(parseInt(data.target.value))}>
+                                <option value={0}>0 min</option>
+                                <option value={900000}>15 min</option>
+                                <option value={1800000}>30 min</option>
+                                <option value={2700000}>45 min</option>
+                                <option value={3600000}>1 time</option>
+                                <option value={7200000}>2 timer</option>
+                                <option value={10800000}>3 timer</option>
+                            </select>
+                        </>
+                    )}
+                    {useFilterStatus && 
+                        <select>
+                            <option>Sent</option>
+                            <option>Dips</option>
+                            <option>Escalate</option>
+                            <option>Snooze</option>
+                            <option>Fixed</option>
                         </select>
-                        <select onChange={data => setFilterTime(parseInt(data.target.value))}>
-                            <option value={0}>0 min</option>
-                            <option value={900000}>15 min</option>
-                            <option value={1800000}>30 min</option>
-                            <option value={2700000}>45 min</option>
-                            <option value={3600000}>1 time</option>
-                            <option value={7200000}>2 timer</option>
-                            <option value={10800000}>3 timer</option>
-                        </select>
-                    </>
-                )}
-                {useFilterStatus && 
-                    <select>
-                        <option>Sent</option>
-                        <option>Dips</option>
-                        <option>Escalate</option>
-                        <option>Snooze</option>
-                        <option>Fixed</option>
-                    </select>
-                }
+                    }
                 </div>
             </div>
         </div>
