@@ -15,9 +15,9 @@ const Login: React.FC = () => {
         });
     };
     return (
-        <div className="outer__ring">
-            <h1 className="header"> Login page </h1>
-            <table className="table">
+        <div className="login__outer-ring">
+            <h1 className="login__header"> Login page </h1>
+            <table className="login__table">
                 <tbody>
                 <tr>
                     <td><h3>Username:</h3></td>
@@ -29,7 +29,7 @@ const Login: React.FC = () => {
                 </tr>
                 <tr>
                     <td>
-                        <button className="login-btn" onClick={() => onClickLogin(username, password)}> Login</button>
+                        <button className="login__login-btn" onClick={() => onClickLogin(username, password)}> Login</button>
                     </td>
                 </tr>
                 </tbody>

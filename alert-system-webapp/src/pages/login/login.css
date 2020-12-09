@@ -1,18 +1,18 @@
-.outer__ring{
+.login__outer-ring{
     margin: 20% 35% 0% 35%;
     border-radius: 100px;
     border: 2px solid lightgrey;
 }
 
-.header {
+.login__header {
     text-align: center;
 }
 
-.table {
+.login__table {
     margin-bottom: 50px;
     padding-left: 22%;
 }
 
-.login-btn {
+.login__login-btn {
     margin-left: 40px;
 }
