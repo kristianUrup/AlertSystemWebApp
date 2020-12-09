@@ -54,10 +54,6 @@ export const SetEmail = (email: string) => {
     sessionStorage.setItem('email', email);
 };
 
-export const GenerateToken = (): string => {
-    return "it is a token for the win";
-};
-
 export const SetLogout = (): boolean => {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('email');
