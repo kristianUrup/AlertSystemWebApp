@@ -15,7 +15,7 @@ const LogDetails: React.FC<LogDetailsProp> = ({ alarmLog }) => {
         const list = [
             {
                 date: new Date(1606740918000),
-                status: AlarmLogType.DIPS
+                status: AlarmLogType.DIBS
             },
             {
                 date: new Date(1606741098000),

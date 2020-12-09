@@ -1,0 +1,127 @@
+.log-filter__container {
+    width: 100%;
+    height: 100%;
+}
+
+.log-filter__container > div {
+    float: left;
+}
+
+.log-filter__settings {
+    position: relative;
+    width: 15%;
+    height: 100%;
+    border-right: 1px solid #d1d1d1;
+    margin-left: -1px;
+}
+
+.log-filter__settings > div {
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+}
+
+.log-filter__settings > button {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 35%;
+    width: 60px;
+    height: 50px;
+    font-weight: 700;
+    color: white;
+    font-size: 20px;
+    border: 0px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.log-filter__settings > button:focus {
+    border: 0px;
+    outline: none;
+}
+
+.log-filter__options {
+    position: relative;
+    width: 25%;
+    height: 100%;
+    border-right: 1px solid #d1d1d1;
+    margin-left: -1px;
+}
+
+.log-filter__options > button {
+    display: block;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 5px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+.log-filter__options-title {
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+}
+
+.log-filter__options-filters > button {
+    display: block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 30px;
+    margin-top: 10px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.log-filter__options-button-on {
+    background-color: #337ab7;
+    color: white;
+    border: 1px solid #337ab7;
+    outline: none;
+}
+
+.log-filter__options-button-on:focus {
+    border: 1px solid #337ab7;
+    outline: none;
+}
+
+.log-filter__options-button-off {
+    background-color: white;
+    border: 1px solid #d8d8d8;
+}
+
+.log-filter__options-button-off:focus {
+    outline: none;
+}
+
+.log-filter__filtering {
+    position: relative;
+    width: 60%;
+    height: 100%;
+}
+
+.log-filter__filtering-title {
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+}
+
+.log-filter__filtering-elements {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding-left: 10px;
+    padding-right: 10px
+}
+
+.log-filter__filtering-elements > input, select {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.log-filter__filtering-elements > select {
+    height: 23px;
+}

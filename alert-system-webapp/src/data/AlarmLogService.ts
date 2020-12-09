@@ -1,5 +1,5 @@
 import {AlarmLog} from './models/AlarmLog';
-import {AlarmLog as AlarmLogModel} from '../models/AlarmLog';
+import {AlarmLog as AlarmLogModel, AlarmLogType} from '../models/AlarmLog';
 
 export const GetAlarms = async (): Promise<AlarmLogModel[]> => {
     const alarmLogs: AlarmLog[] = await fetch('http://localhost:7071/api/alarmlog').then(response => response.json());
@@ -7,7 +7,8 @@ export const GetAlarms = async (): Promise<AlarmLogModel[]> => {
     return alarmLogs.map(alarmLog => ({
         alarm: alarmLog.alarm,
         machine: alarmLog.machine,
-        date: new Date(alarmLog.date)
+        date: new Date(alarmLog.date),
+        lastStatus: AlarmLogType.FIXED //Mocked attribute
     }));
 };
 

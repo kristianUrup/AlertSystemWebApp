@@ -3,17 +3,20 @@ import {GetAlarms} from "../../data/AlarmLogService";
 import {AlarmLog} from "../../models/AlarmLog";
 import './log.css';
 import LogDetails from './logDetails/logDetails';
+import LogFilter from './logFilter/logFilter';
 import LogTable from './logTable/logTable';
 
 const Log: React.FC = () => {
-    const [alarms, setAlarms] = useState<AlarmLog[]>([]);
+    const [alarmLogs, setAlarmLogs] = useState<AlarmLog[]>([]);
     const [alarm, setAlarm] = useState<AlarmLog>();
     const [loading, setLoading] = useState(false);
+    const [filterList, setFilterList] = useState<AlarmLog[]>([]);
 
     useEffect(() => {
         setLoading(true);
         GetAlarms().then(list => {
-            setAlarms(list);
+            setAlarmLogs(list);
+            setFilterList(list);
         }).finally(() => {
             setLoading(false);
         });
@@ -25,13 +28,18 @@ const Log: React.FC = () => {
 
             </div>
             <div className="log__table-container">
-                {alarms.length > 0 && <LogTable alarmLogs={alarms} setAlarm={al => setAlarm(al)}/>}
-                {alarms.length === 0 && (
-                    <div className="log__table-container-no-alarms">
-                        {!loading && <h1>No alarm logs could be found</h1>}
-                        {loading && <h1>Loading all logs...</h1>}
-                    </div>
-                )}
+                <div className="log__table-filter-container">
+                    <LogFilter alarmLogs={alarmLogs} setAlarmLogs={als => setFilterList(als)} />
+                </div>
+                <div className="log__table-data-container">
+                    {filterList.length > 0 && <LogTable alarmLogs={filterList} setAlarm={al => setAlarm(al)}/>}
+                    {filterList.length === 0 && (
+                        <div className="log__table-container-no-alarms">
+                            {!loading && <h1>No alarm logs could be found</h1>}
+                            {loading && <h1>Loading all logs...</h1>}
+                        </div>
+                    )}
+                </div>
             </div>
             <div className="log__details">
                 {alarm && <LogDetails alarmLog={alarm}/>}
