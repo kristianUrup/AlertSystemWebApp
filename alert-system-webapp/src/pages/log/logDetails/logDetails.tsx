@@ -46,11 +46,15 @@ const LogDetails: React.FC<LogDetailsProp> = ({ alarmLog }) => {
                 <div className="log-details__info-box" style={{ marginBottom: "25px" }}>
                     <div className="log-details__info-box-row">
                         <label className="log-details__info-box-row-label">Machine name</label>
-                        <label className="log-details__info-box-row-data">{alarmLog.machine.name}</label>
+                        <label className="log-details__info-box-row-data">
+                            {alarmLog.machine.name ? alarmLog.machine.name : "None"}
+                        </label>
                     </div>
                     <div className="log-details__info-box-row">
                         <label className="log-details__info-box-row-label">Machine Type</label>
-                        <label className="log-details__info-box-row-data">{alarmLog.machine.type}</label>
+                        <label className="log-details__info-box-row-data">
+                            {alarmLog.machine.type ? alarmLog.machine.type : "None"}
+                        </label>
                     </div>
                 </div>
                 <div className="log-details__info-box">
