@@ -1,8 +1,10 @@
 import {AlarmLog} from './models/AlarmLog';
 import {AlarmLog as AlarmLogModel, AlarmLogType} from '../models/AlarmLog';
+import * as AuthService from './AuthService';
 
 export const GetAlarms = async (): Promise<AlarmLogModel[]> => {
-    const alarmLogs: AlarmLog[] = await fetch('http://localhost:7071/api/alarmlog').then(response => response.json());
+
+    const alarmLogs: AlarmLog[] = await fetch('http://localhost:7071/api/alarmlog', {headers: AuthService.Headers()}).then(response => response.json());
 
     return alarmLogs.map(alarmLog => ({
         alarm: alarmLog.alarm,
