@@ -1,5 +1,5 @@
-import {Machine} from "../../models/Machine";
-import {Alarm} from "../../models/Alarm";
+import {Machine} from "./Machine";
+import {Alarm} from "./Alarm";
 
 export interface AlarmLog {
     machine: Machine,

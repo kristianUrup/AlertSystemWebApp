@@ -1,6 +1,5 @@
 export interface Machine {
-    machineId : string;
+    machineId: string;
     name: string;
     type: string;
-
 }

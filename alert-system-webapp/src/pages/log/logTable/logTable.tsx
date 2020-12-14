@@ -14,7 +14,7 @@ const LogTable: React.FC<LogTableProps> = ({ alarmLogs, setAlarm }) => {
         <table className="log-table">
             <thead>
                 <tr>
-                    <th>Machine ID</th>
+                    <th>Machine</th>
                     <th>Alarm Code</th>
                     <th>Date</th>
                     <th>Last status</th>
@@ -25,7 +25,7 @@ const LogTable: React.FC<LogTableProps> = ({ alarmLogs, setAlarm }) => {
                     return (
                         <tr key={`data-${index}`} onClick={() => setAlarm(data)}>
                             <td>
-                                {data.machine.machineId}
+                                {data.machine.name ? data.machine.name : "None"} | {data.machine.type ? data.machine.type : "None"}
                             </td>
                             <td>
                                 {data.alarm.code}
