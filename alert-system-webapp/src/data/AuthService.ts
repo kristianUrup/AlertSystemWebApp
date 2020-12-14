@@ -25,6 +25,14 @@ export const LoginWithNameAndEmail = async (name: string, password: string): Pro
     }
 };
 
+export const Headers = () => {
+    let header = {
+        'Content-Type':'application/json',
+        'Authorization': 'Bearer ' + (sessionStorage.getItem('token') != null ? GetToken() : '')
+    };
+    return header;
+};
+
 
 export const CheckAuth = (): boolean => {
     const token = GetToken();
