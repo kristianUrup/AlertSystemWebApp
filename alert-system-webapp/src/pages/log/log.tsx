@@ -5,12 +5,22 @@ import './log.css';
 import LogDetails from './logDetails/logDetails';
 import LogFilter from './logFilter/logFilter';
 import LogTable from './logTable/logTable';
+import {CheckAuth, SetLogout} from "../../data/AuthService";
+import { useHistory } from "react-router-dom";
 
 const Log: React.FC = () => {
     const [alarmLogs, setAlarmLogs] = useState<AlarmLog[]>([]);
     const [alarm, setAlarm] = useState<AlarmLog>();
     const [loading, setLoading] = useState(false);
     const [filterList, setFilterList] = useState<AlarmLog[]>([]);
+    let history = useHistory();
+
+
+    const Logout = () => {
+        if(SetLogout()){
+            history.push('/');
+        }
+    };
 
     useEffect(() => {
         setLoading(true);
@@ -25,7 +35,8 @@ const Log: React.FC = () => {
     return (
         <div className="log__page">
             <div className="log__header">
-
+                {CheckAuth() ?
+                    <button className="log_logout-btn" onClick={Logout}>Logout </button> : ""}
             </div>
             <div className="log__table-container">
                 <div className="log__table-filter-container">

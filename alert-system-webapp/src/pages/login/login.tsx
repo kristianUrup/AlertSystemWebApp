@@ -10,7 +10,7 @@ const Login: React.FC = () => {
     const onClickLogin = (username: string, password: string) => {
         LoginWithNameAndEmail(username, password).then(success => {
             if (success) {
-                history.push('/log');
+                history.push('/');
             }
         });
     };
